@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leonardo Fernández Cortés</title>
+</head>
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            opacity: 0.3;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .name {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .title {
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95em;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 35px;
+        }
+        
+        .section-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 3px solid #3498db;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 50px;
+            height: 4px;
+            background: #0e813c;
+        }
+        
+        .experience-item, .education-item {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #3498db;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .experience-item:hover, .education-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .job-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .company {
+            font-weight: bold;
+            color: #3498db;
+            margin-bottom: 5px;
+        }
+        
+        .period {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+        
+        .description {
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .skill-category {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-top: 3px solid #3498db;
+        }
+        
+        .skill-category h4 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        .skill-item {
+            background: white;
+            padding: 8px 15px;
+            margin: 5px 0;
+            border-radius: 20px;
+            display: inline-block;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            font-size: 0.9em;
+            transition: transform 0.2s ease;
+        }
+        
+        .skill-item:hover {
+            transform: scale(1.05);
+            background: #3498db;
+            color: white;
+        }
+        
+        .languages {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .language {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 25px;
+            text-align: center;
+            flex: 1;
+            min-width: 150px;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+            transition: transform 0.3s ease;
+        }
+        
+        .language:hover {
+            transform: translateY(-3px);
+        }
+        
+        .language-name {
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        
+        .language-level {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        
+        .highlight {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(243, 156, 18, 0.3);
+        }
+        
+        .personal-quote {
+            background: linear-gradient(135deg, #8e44ad, #9b59b6);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            font-style: italic;
+            font-size: 1.1em;
+            margin: 30px 0;
+            box-shadow: 0 5px 15px rgba(142, 68, 173, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .contact-info {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .name {
+                font-size: 2em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .languages {
+                flex-direction: column;
+            }
+        }
+    </style>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1 class="name">Leonardo Fernández Cortés</h1>
+                <p class="title">El León científico</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span>📧</span>
+                        <span>leonferco15@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <span></span>
+                        <span>Guerrero, México</span>
+                    </div>
+                    <div class="contact-item">
+                        <span></span>
+                        <span>Disponibilidad 100% Remoto</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="highlight">
+                 ¿Cuál es la situación?
+                 <br><br>
+                 ¿Cómo puedo ayudar? What are you looking for?
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Perfil Profesional</h2>
+                <p class="description">
+                    Desarrollador de código con experiencia en programación con Java, Python, Css y HTML tanto backend, como front end. 
+<br>
+<br>
+Nacido en EUA con dominio nativo del inglés resido en México donde estudio la universidad. 
+<br>
+Disfruto aprender cosas nuevas e ingeniar nuevas aplicaciones para ello. 
+<br>
+<br>
+Si tuviera que describirme en unas cuantas palabras: <br>
+Soy una persona polivalente, adepta y versátil con capacidad excepcional de adaptación y aprendizaje de múltiples áreas        </p>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Experiencia Profesional</h2>
+                <div class="experience-item">
+                    <div class="job-title">Desarrollo de código</div>
+                    <div class="company">Proyectos Independientes</div>
+                    <div class="period">2020 - Presente (4 años)</div>
+                    <div class="description">
+                        • Desarrollo de sitios web personalizados usando, HTML, CSS y JavaScript con consolas desde el bloc de notas, sublime text hasta code pen<br>
+                        • Creación de modelos de simulación y programas matématicos con Java y Python<br>
+                        • Desarrollo de aplicaciones móviles<br>
+                        • Le sé un tanto a las bases de datos<br>
+                        • Gestión completa de proyectos desde conceptualización hasta implementación<br>
+                        • Mantenimiento y actualización continua de programas.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Educación</h2>
+                <div class="education-item">
+                    <div class="job-title">Ingeniería en Sistemas</div>
+                    <div class="company">En Curso</div>
+                    <div class="description">
+                        Estudiante de Ingeniería en Sistemas con enfoque en desarrollo de software, tecnologías web e innovación tecnológica.
+                    </div>
+                </div>
+                <div class="education-item">
+                    <div class="job-title">Técnico en Físico Matemático</div>
+                    <div class="company">Titulado</div>
+                    <div class="description">
+                        Sólida base en matemáticas aplicadas y principios físicos, proporcionando una perspectiva analítica única para la resolución de problemas técnicos.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Habilidades Técnicas</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h4>Desarrollo Web</h4>
+                        <div class="skill-item"></div>
+                        <div class="skill-item">HTML</div>
+                        <div class="skill-item">C</div>
+                        <div class="skill-item">JavaScript</div>
+                        <div class="skill-item">PHP</div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Programación</h4>
+                        <div class="skill-item">Python</div>
+                        <div class="skill-item">Desarrollo Móvil</div>
+                        
+                        <div class="skill-item">Java</div>
+                        <div class="skill-item">Bases de Datos</div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Habilidades Blandas</h4>
+                        <div class="skill-item">Comprensión Lectora Sobresaliente</div>
+                        <div class="skill-item">Aprendizaje Rápido</div>
+                        <div class="skill-item">Comunicación Efectiva</div>
+                        <div class="skill-item">Trabajo en Equipo</div>
+                        <div class="skill-item">Resolución de Problemas</div>
+                        <div class="skill-item">Organización</div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Especialidades</h4>
+                        <div class="skill-item">Dibujo Técnico</div>
+                        <div class="skill-item">Geometría Aplicada</div>
+                        <div class="skill-item">Audio/Video</div>
+                        <div class="skill-item">Matemáticas Avanzadas</div>
+                        <div class="skill-item">Análisis Lógico</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Idiomas</h2>
+                <div class="languages">
+                    <div class="language">
+                        <div class="language-name">Español</div>
+                        <div class="language-level">Nativo</div>
+                    </div>
+                    <div class="language">
+                        <div class="language-name">Inglés</div>
+                        <div class="language-level">Nativo</div>
+                    </div>
+                    <div class="language">
+                        <div class="language-name">Francés</div>
+                        <div class="language-level">A1</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Ventajas Competitivas</h2>
+                <div class="description">
+                    <strong>🇺🇸 Ventaja Cultural:</strong> Al ser nacido en EUA comprendo perfectamente la cultura americana y las expectativas de los clientes.<br><br>
+                    <strong> Aprendizaje Acelerado:</strong> Capacidad excepcional para dominar nuevas tecnologías conceptos, herramientas etc.<br><br>
+                    <strong>Pensamiento Analítico:</strong> Formación técnica en físico-matemáticas que me permite abordar problemas complejos con metodología científica.<br><br>
+                    <strong> Comunicación Efectiva:</strong> Personalidad extrovertida con habilidades naturales para establecer conexiones con clientes y equipos de trabajo.<br><br>
+                    <strong> Disponibilidad Total:</strong> Listo para comenzar inmediatamente con horarios flexibles para clientes internacionales.
+                </div>
+            </div>
+            
+            <div class="personal-quote">
+                "Tengo solo 20 años, pero mi mente es más madura. Este mundo no siempre es justo, pero haré mi mejor esfuerzo para mejorarlo para todos."
+            </div>
+        </div>
+    </div>
+</body>
+</html>
